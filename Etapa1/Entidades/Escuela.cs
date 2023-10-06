@@ -14,6 +14,7 @@ namespace CoreEscuela.entidades
 
         public TiposEscuela TipoEscuela { get; set; }// este es un tipo de dato enumerado que se encuentra en TiposEscuelas.cs
 
+        public Curso[] Cursos { get; set; }// arreglo de cursos
         public Escuela (string nombre, int año) => (Nombre, AñoDeCreacion) = (nombre, año);
 
          public Escuela (string nombre, int año, 

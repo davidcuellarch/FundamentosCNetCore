@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreEscuela.entidades;
+using static System.Console;
 
 namespace Etapa1
 {
@@ -7,27 +8,50 @@ namespace Etapa1
     {
         static void Main(string[] args)
         {
-            var escuela = new Escuela("Platzi",2012, TiposEscuela.Primaria, Ciudad: "Bogota", Pais: "Colombia");
-                        
-            var arregloCursos = new Curso[3];
-            arregloCursos[0] = new Curso(){Nombre = "101"};
-            arregloCursos[1] = new Curso(){Nombre = "201"};
-            arregloCursos[2] = new Curso(){Nombre = "301"};
+            var escuela = new Escuela("Platzi", 2012, TiposEscuela.Primaria, Ciudad: "Bogota", Pais: "Colombia");
 
-            Console.WriteLine(escuela);
-            System.Console.WriteLine("==============");
-            System.Console.WriteLine($"cursos habilitados en la escuela {escuela.Nombre}");
-            ImprimirCursos(arregloCursos);
+            escuela.Cursos = new Curso[] // arreglo de cursos 
+            {
+                new Curso() { Nombre = "101" },
+                new Curso() { Nombre = "201" },
+                new Curso() { Nombre = "301" }
+            };
+            
+            ImprimirCursosEscuela(escuela);
+
+            
+
+
+            
         }
 
-        private static void ImprimirCursos(Curso[] arregloCursos)
+        private static void ImprimirCursosEscuela(Escuela escuela)
         {
-            int contador = 0;
-            while (contador < arregloCursos.Length)
+            WriteLine("==================");
+            WriteLine("Cursos de la escuela");
+            WriteLine("==================");
+            if (escuela?.Cursos != null)// valida que la escuela y los cursos no sean nulos el operador ? es para validar que no sea nulo
             {
-                Console.WriteLine($"Nombre: {arregloCursos[contador].Nombre} - ID: {arregloCursos[contador].UniqueId}");
-                contador++;
+                foreach (var curso in escuela.Cursos)
+                {
+                    WriteLine($"Nombre: {curso.Nombre} - ID: {curso.UniqueId}");// for each para imprimir los cursos
+                }
             }
+            else
+            {
+                WriteLine("No hay cursos");
+            }
+
+
+        }
+
+        private static void ImprimirCursosFor(Curso[] arregloCursos)
+        {
+            foreach (var curso in arregloCursos)
+            {
+                WriteLine($"Nombre: {curso.Nombre} - ID: {curso.UniqueId}");// for each para imprimir los cursos
+            }
+
         }
     }
 }
