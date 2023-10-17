@@ -1,57 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using CoreEscuela.entidades;
+using CoreEscuela.Util;
 using static System.Console;
 
-namespace Etapa1
+namespace CoreEscuela
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var escuela = new Escuela("Platzi", 2012, TiposEscuela.Primaria, Ciudad: "Bogota", Pais: "Colombia");
-
-            escuela.Cursos = new Curso[] // arreglo de cursos 
-            {
-                new Curso() { Nombre = "101" },
-                new Curso() { Nombre = "201" },
-                new Curso() { Nombre = "301" }
-            };
+            var engine = new EscuelaEngine();
+            engine.Inicializar();
+            Printer.DibujarLinea();
+            Printer.WriteTittle("BIENVENIDOS A LA ESCUELA");
+            Printer.BeebSound(10000, cantidad: 10);
+            Printer.DibujarLinea();
+            WriteLine(engine.Escuela);
+            Printer.DibujarLinea();
             
-            ImprimirCursosEscuela(escuela);
-
-            
-
-
-            
-        }
-
-        private static void ImprimirCursosEscuela(Escuela escuela)
-        {
-            WriteLine("==================");
-            WriteLine("Cursos de la escuela");
-            WriteLine("==================");
-            if (escuela?.Cursos != null)// valida que la escuela y los cursos no sean nulos el operador ? es para validar que no sea nulo
-            {
-                foreach (var curso in escuela.Cursos)
-                {
-                    WriteLine($"Nombre: {curso.Nombre} - ID: {curso.UniqueId}");// for each para imprimir los cursos
-                }
-            }
-            else
-            {
-                WriteLine("No hay cursos");
-            }
-
-
-        }
-
-        private static void ImprimirCursosFor(Curso[] arregloCursos)
-        {
-            foreach (var curso in arregloCursos)
-            {
-                WriteLine($"Nombre: {curso.Nombre} - ID: {curso.UniqueId}");// for each para imprimir los cursos
-            }
 
         }
     }
 }
+
